@@ -1,0 +1,195 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="layout">
+
+    {% include 'components/sidebar.html' %}
+
+    <div class="main-content">
+
+        <div class="dashboard-header">
+
+            <div>
+
+                <h1 class="page-title">
+                    Xavfsiz boshqaruv paneli
+                </h1>
+
+                <p class="page-subtitle">
+                    Xush kelibsiz, {{ current_user.username }}
+                </p>
+
+            </div>
+
+        </div>
+
+        {% with messages = get_flashed_messages() %}
+
+            {% if messages %}
+
+                {% for message in messages %}
+
+                    <div class="flash-message">
+
+                        {{ message }}
+
+                    </div>
+
+                {% endfor %}
+
+            {% endif %}
+
+        {% endwith %}
+
+        <div class="card-grid">
+
+            <div class="card">
+
+                <div class="card-header">
+
+                    <h3 class="card-title">
+                        HTTPS / TLS
+                    </h3>
+
+                </div>
+
+                <p class="card-description">
+                    Secure transport layer protection enabled
+                </p>
+
+                <br>
+
+                <span class="status green">
+                    Active
+                </span>
+
+            </div>
+
+            <div class="card">
+
+                <div class="card-header">
+
+                    <h3 class="card-title">
+                        Encryption
+                    </h3>
+
+                </div>
+
+                <p class="card-description">
+                    Military-grade secure encryption system
+                </p>
+
+                <br>
+
+                <span class="status blue">
+                    AES-256 Enabled
+                </span>
+
+            </div>
+
+            <div class="card">
+
+                <div class="card-header">
+
+                    <h3 class="card-title">
+                        Current Role
+                    </h3>
+
+                </div>
+
+                <p class="card-description">
+                    Current authenticated user privilege
+                </p>
+
+                <br>
+
+                {% if current_user.role == 'admin' %}
+
+                    <span class="status red">
+                        ADMIN
+                    </span>
+
+                {% else %}
+
+                    <span class="status blue">
+                        USER
+                    </span>
+
+                {% endif %}
+
+            </div>
+
+        </div>
+
+        <div class="dashboard-section">
+
+            <div class="card">
+
+                <h2 class="card-title">
+                    Security Overview
+                </h2>
+
+                <br>
+
+                <div class="security-list">
+
+                    <div class="security-item">
+
+                        <span>
+                            TLS Certificate
+                        </span>
+
+                        <span class="status green">
+                            Valid
+                        </span>
+
+                    </div>
+
+                    <div class="security-item">
+
+                        <span>
+                            Secure Session
+                        </span>
+
+                        <span class="status green">
+                            Protected
+                        </span>
+
+                    </div>
+
+                    <div class="security-item">
+
+                        <span>
+                            Audit Monitoring
+                        </span>
+
+                        <span class="status blue">
+                            Running
+                        </span>
+
+                    </div>
+
+                    <div class="security-item">
+
+                        <span>
+                            Message Protection
+                        </span>
+
+                        <span class="status green">
+                            Encrypted
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

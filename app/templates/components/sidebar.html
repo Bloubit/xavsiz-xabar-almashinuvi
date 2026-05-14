@@ -1,0 +1,57 @@
+<div class="sidebar">
+
+    <div class="sidebar-logo">
+        SecureTLS
+    </div>
+
+    <div class="sidebar-menu">
+
+        <a href="{{ url_for('main.dashboard') }}"
+           class="sidebar-link">
+
+            Dashboard
+
+        </a>
+
+        <a href="{{ url_for('main.profile') }}"
+           class="sidebar-link">
+
+            Profile
+
+        </a>
+
+        <a href="{{ url_for('main.inbox') }}"
+           class="sidebar-link">
+
+            Messages
+
+        </a>
+
+        {% if current_user.role == 'admin' %}
+
+            <a href="{{ url_for('main.admin_dashboard') }}"
+               class="sidebar-link">
+
+                Admin Panel
+
+            </a>
+
+            <a href="{{ url_for('main.audit_logs') }}"
+               class="sidebar-link">
+
+                Audit Logs
+
+            </a>
+
+        {% endif %}
+
+        <a href="{{ url_for('main.logout') }}"
+           class="sidebar-link logout-btn">
+
+            Logout
+
+        </a>
+
+    </div>
+
+</div>

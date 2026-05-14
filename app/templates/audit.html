@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="layout">
+
+    {% include 'components/sidebar.html' %}
+
+    <div class="main-content">
+
+        <h1 class="page-title">
+            Audit Logs
+        </h1>
+
+        <p class="page-subtitle">
+            Security monitoring and user activity
+        </p>
+
+        <div class="table-wrapper">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            User ID
+                        </th>
+
+                        <th>
+                            Action
+                        </th>
+
+                        <th>
+                            IP Address
+                        </th>
+
+                        <th>
+                            Time
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    {% for log in logs %}
+
+                    <tr>
+
+                        <td>
+                            {{ log.user_id }}
+                        </td>
+
+                        <td>
+                            {{ log.action }}
+                        </td>
+
+                        <td>
+                            {{ log.ip_address }}
+                        </td>
+
+                        <td>
+                            {{ log.timestamp }}
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

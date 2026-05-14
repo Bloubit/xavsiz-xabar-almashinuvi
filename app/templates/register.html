@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="auth-container">
+
+    <div class="auth-card">
+
+        <h1 class="auth-title">
+            Register
+        </h1>
+
+        <p class="auth-subtitle">
+            Yangi xavfsiz akkaunt yaratish
+        </p>
+
+        <form method="POST">
+
+            {{ form.hidden_tag() }}
+
+            <div class="input-group">
+
+                {{ form.username.label(class="input-label") }}
+
+                {{ form.username(class="auth-input") }}
+
+            </div>
+
+            <div class="input-group">
+
+                {{ form.email.label(class="input-label") }}
+
+                {{ form.email(class="auth-input") }}
+
+            </div>
+
+            <div class="input-group">
+
+                {{ form.password.label(class="input-label") }}
+
+                {{ form.password(class="auth-input") }}
+
+            </div>
+
+            <div class="input-group">
+
+                {{ form.confirm_password.label(class="input-label") }}
+
+                {{ form.confirm_password(class="auth-input") }}
+
+            </div>
+
+            {{ form.submit(class="auth-button") }}
+
+        </form>
+
+        <div class="auth-footer">
+
+            Akkount bormi?
+
+            <a href="{{ url_for('main.login') }}">
+                Login
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

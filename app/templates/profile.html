@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="layout">
+
+    {% include 'components/sidebar.html' %}
+
+    <div class="main-content">
+
+        <h1 class="page-title">
+            Profile
+        </h1>
+
+        <p class="page-subtitle">
+            Your secure identity information
+        </p>
+
+        <div class="card profile-wrapper">
+
+            <img
+                src="{{ url_for(
+                    'static',
+                    filename='uploads/' + current_user.avatar
+                ) }}"
+                class="avatar"
+            >
+
+            <div>
+
+                <h2 class="profile-name">
+                    {{ current_user.username }}
+                </h2>
+
+                <p class="profile-email">
+                    {{ current_user.email }}
+                </p>
+
+                <p class="profile-bio">
+                    {{ current_user.bio }}
+                </p>
+
+                <br>
+
+                <span class="status blue">
+                    {{ current_user.role }}
+                </span>
+
+            </div>
+
+        </div>
+
+        <br>
+
+        <a
+            href="{{ url_for('main.edit_profile') }}"
+            class="btn"
+        >
+            Edit Profile
+        </a>
+
+    </div>
+
+</div>
+
+{% endblock %}

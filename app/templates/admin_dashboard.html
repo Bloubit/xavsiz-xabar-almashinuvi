@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>
+    Admin Dashboard
+</h1>
+
+<br>
+
+<div class="dashboard-card">
+
+    <h2>
+        Users
+    </h2>
+
+    <br>
+
+    {% for user in users %}
+
+        <div class="user-card">
+
+            <p>
+                Username:
+                {{ user.username }}
+            </p>
+
+            <p>
+                Email:
+                {{ user.email }}
+            </p>
+
+            <p>
+                Role:
+                {{ user.role }}
+            </p>
+
+            {% if user.role != 'admin' %}
+
+                <a
+                    class="btn danger-btn"
+                    href="{{ url_for('main.delete_user', user_id=user.id) }}"
+                >
+                    Delete
+                </a>
+
+            {% endif %}
+
+            <hr>
+
+        </div>
+
+    {% endfor %}
+
+</div>
+
+<br>
+
+<div class="dashboard-card">
+
+    <h2>
+        Encrypted Messages
+    </h2>
+
+    <br>
+
+    {% for message in messages %}
+
+        <p>
+            Message ID:
+            {{ message.id }}
+        </p>
+
+        <p>
+            Sender ID:
+            {{ message.sender_id }}
+        </p>
+
+        <p>
+            Receiver ID:
+            {{ message.receiver_id }}
+        </p>
+
+        <p>
+            Encrypted:
+            {{ message.encrypted_content }}
+        </p>
+
+        <hr>
+
+    {% endfor %}
+
+</div>
+
+{% endblock %}

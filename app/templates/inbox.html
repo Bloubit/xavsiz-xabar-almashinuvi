@@ -1,0 +1,144 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="chat-layout">
+
+    {% include 'components/sidebar.html' %}
+
+    <div class="chat-users">
+
+        <div class="chat-users-header">
+            Chats
+        </div>
+
+        {% for user in users %}
+
+            <a
+                href="{{ url_for('main.inbox', user_id=user.id) }}"
+                class="chat-user-card"
+            >
+
+                <div class="avatar-circle">
+                    {{ user.username[0] }}
+                </div>
+
+                <div>
+
+                    <div class="chat-username">
+                        {{ user.username }}
+                    </div>
+
+                    <div class="chat-status">
+                        Online
+                    </div>
+
+                </div>
+
+            </a>
+
+        {% endfor %}
+
+    </div>
+
+    <div class="chat-box">
+
+        {% if selected_user %}
+
+        <div class="chat-header">
+
+            <div class="chat-header-left">
+
+                <div class="avatar-circle large">
+                    {{ selected_user.username[0] }}
+                </div>
+
+                <div>
+
+                    <h2>
+                        {{ selected_user.username }}
+                    </h2>
+
+                    <span>
+                        secure encrypted chat
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="messages-container">
+
+            {% for message in messages %}
+
+                {% if message.sender_id == current_user.id %}
+
+                    <div class="message-row right">
+
+                        <div class="message-bubble sender">
+
+                            {{ message.content }}
+
+                        </div>
+
+                    </div>
+
+                {% else %}
+
+                    <div class="message-row left">
+
+                        <div class="message-bubble receiver">
+
+                            {{ message.content }}
+
+                        </div>
+
+                    </div>
+
+                {% endif %}
+
+            {% endfor %}
+
+        </div>
+
+        <form
+            method="POST"
+            class="message-form"
+        >
+
+            <input
+                type="text"
+                name="content"
+                placeholder="Write encrypted message..."
+                required
+            >
+
+            <button type="submit">
+                Send
+            </button>
+
+        </form>
+
+        {% else %}
+
+            <div class="empty-chat">
+
+                <h1>
+                    SecureTLS Messenger
+                </h1>
+
+                <p>
+                    Select user to start encrypted conversation
+                </p>
+
+            </div>
+
+        {% endif %}
+
+    </div>
+
+</div>
+
+{% endblock %}
